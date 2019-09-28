@@ -30,14 +30,26 @@ services:
     app-postgres:
         image: postgres:11.2-alpine
         volumes:
-            - manager-postgres:/var/lib/postgresql/data
+            - app-postgres:/var/lib/postgresql/data
         environment:
             POSTGRES_USER: user
             POSTGRES_PASSWORD: pass
             POSTGRES_DB: app
         ports:
             - "5433:5432"
+    app-node:
+        image: node:11.13-alpine
+        volumes:
+            - ./app:/app
+        working_dir: /app
+    app-node-watch:
+        image: node:11.13-alpine
+        volumes:
+            - ./app:/app
+        working_dir: /app
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && npm run watch"
+
 
 volumes:
-    manager-postgres:
+    app-postgres:
     composer:
