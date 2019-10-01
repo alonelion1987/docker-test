@@ -1,7 +1,5 @@
 # docker-test
 
-Simple frame for nginx + php-fpm + php-cli + pgsql ENV in Docker. 
+nginx1.16.1 + php7.1-fpm + mysql8 + xdebug2.6.0
 
-Master branch showing Slim App with Hello World. Other Branches - other systems
-
-Makefile group commands docker-compose
+note: https://zharrikov.ru/note/bare_lemp_docker_xdebug.html
