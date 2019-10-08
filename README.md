@@ -6,7 +6,7 @@ Start development: `Makefile::init`
 
 ---
 
-Problems with file permissions, then install plugins via admin panel, try:
+Problems with file permissions if install plugins via admin panel, try:
 
 - `sudo chown $(whoami):$(whoami) -R $(pwd)/app/`
 - `sudo chown www-data:www-data -R $(pwd)/app/`
