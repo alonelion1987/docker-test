@@ -1,7 +1,5 @@
 # docker-test
 
-Simple frame for nginx + php-fpm + php-cli + pgsql ENV in Docker. 
+Custom build WordPress on nginx, php-fpm, mysql and xdebug
 
-Master branch showing Slim App with Hello World. Other Branches - other systems
-
-Makefile group commands docker-compose
+Start development: `Makefile::init`

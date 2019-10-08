@@ -1,6 +1,5 @@
 {
     "require": {
-        "slim/slim": "4.0.0",
-        "zendframework/zend-diactoros": "^2.1"
+        "johnpbloch/wordpress": "^5.2"
     }
 }
