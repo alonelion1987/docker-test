@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y libjpeg-dev libpng-dev libfreetype6-dev
     pecl install xdebug-2.7.0  && \
     docker-php-ext-enable xdebug
 
-ADD ./php-fpm/php.ini /usr/local/etc/php/php.ini
+ADD ./php.ini /usr/local/etc/php/php.ini
 
 ENV LOCALTIME Europe/Kaliningrad
 
