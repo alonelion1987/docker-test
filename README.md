@@ -4,6 +4,8 @@ Custom build WordPress on nginx, php-fpm, mysql and xdebug
 
 Start development: `Makefile::init`
 
+Url: http://localhost:8888
+
 ---
 
 Problems with file permissions if install plugins via admin panel, try:
