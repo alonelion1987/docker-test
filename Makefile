@@ -1,13 +1,16 @@
-###
-init-containers: docker-down-all-remove docker-pull docker-build docker-up app-init
+up: docker-up app-start
+down: docker-down
+restart: docker-down docker-up app-start
+init: docker-down-clear docker-pull docker-build docker-up app-npm-install app-start
 
-start-containers: docker-up
-
-stop-containers: docker-down
-
-###
 docker-up:
 	docker-compose up -d
+
+docker-down:
+	docker-compose down --remove-orphans
+
+docker-down-clear:
+	docker-compose down -v --remove-orphans
 
 docker-pull:
 	docker-compose pull
@@ -15,14 +18,10 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-docker-down:
-	docker-compose down --remove-orphans
+app-init: app-npm-install app-start
 
-docker-down-all-remove:
-	docker-compose down -v --remove-orphans
+app-npm-install:
+	docker-compose exec app-node npm install
 
-app-init: app-composer-install
-
-app-composer-install:
-	docker-compose run --rm app-php-cli composer install
-
+app-start:
+	docker-compose exec app-node npm run dev

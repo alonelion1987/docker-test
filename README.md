@@ -1,13 +1,9 @@
 # docker-test
 
-Simple frame for nginx + php-fpm + php-cli + pgsql ENV in Docker. 
-
-Master branch showing Slim App with Hello World. Other Branches - other systems
-
-Makefile group commands docker-compose
+Simple server on nodejs + express and one route '/'
 
 ---
 
-Start development: `Makefile::init-containers`
+Start development: `Makefile::init`
 
-Url: http://localhost:8888
+Url: http://localhost:8080
