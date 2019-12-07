@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encoder test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div id="box">
+        <p><label for="message"></label><input type="text" id="message" name="message"></p>
+        <p>
+            <input type="radio" id="base64" name="method" value="base64" checked>
+            <label for="base64">base64</label>
+            <input type="radio" id="md5" name="method" value="md5">
+            <label for="md5">MD5</label>
+        </p>
+        <div><button id="button-create-message">Send</button></div>
+    </div>
+    <p>Result: <span id="result"></span></p>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

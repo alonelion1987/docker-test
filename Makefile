@@ -5,6 +5,8 @@ start-containers: docker-up
 
 stop-containers: docker-down
 
+restart-containers: stop-containers start-containers
+
 ###
 docker-up:
 	docker-compose up -d

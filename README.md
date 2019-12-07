@@ -1,7 +1,11 @@
 # docker-test
 
-Simple frame for nginx + php-fpm + php-cli + pgsql ENV in Docker. 
+![screen-frontend](http://i.imgur.com/zgbif2y.png "app-encoder")
 
-Master branch showing Slim App with Hello World. Other Branches - other systems
+Example of the simplest application divided into frontend and backend parts working in a docker container.
 
-Makefile group commands docker-compose
+Frontend pure JS. Backend on Slim microframework (PHP)
+
+Frontend open http://localhost:8888
+
+Backend listen http://localhost:8889 and handle one route API **/api/encode_message** with request params POST **message** and **method**

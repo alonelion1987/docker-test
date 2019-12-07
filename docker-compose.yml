@@ -1,43 +1,61 @@
 version: '3'
 services:
-    app-nginx:
+    app-frontend-nginx:
         build:
-            context: ./app/docker/development
+            context: ./app/frontend/docker/development
             dockerfile: nginx.docker
         volumes:
-            - ./app:/app
-        depends_on:
-            - app-php-fpm
+            - ./app/frontend:/var/www/frontend
         ports:
             - "8888:80"
+        depends_on:
+          - app-backend-nginx
+          - app-php-fpm
+        networks:
+            - inner
+
+    app-backend-nginx:
+        build:
+            context: ./app/backend/docker/development
+            dockerfile: nginx.docker
+        volumes:
+            - ./app/backend:/var/www/backend
+        ports:
+            - "8889:80"
+        depends_on:
+          - app-php-fpm
+        networks:
+          - inner
+
     app-php-fpm:
         build:
-            context: ./app/docker/development
+            context: ./app/backend/docker/development
             dockerfile: php-fpm.docker
         volumes:
-            - ./app:/app
-        depends_on:
-            - app-postgres
+            - ./app/backend:/var/www/backend
+        environment:
+            XDEBUG_CONFIG: "remote_host=172.28.0.1 remote_enable=1"
+            PHP_IDE_CONFIG: "serverName=Docker"
+        networks:
+            - inner
+
     app-php-cli:
         build:
-            context: ./app/docker/development
+            context: ./app/backend/docker/development
             dockerfile: php-cli.docker
         volumes:
-            - ./app:/app
+            - ./app/backend:/var/www/backend
             - composer:/root/.composer/cache
-        depends_on:
-            - app-postgres
-    app-postgres:
-        image: postgres:11.2-alpine
-        volumes:
-            - manager-postgres:/var/lib/postgresql/data
-        environment:
-            POSTGRES_USER: user
-            POSTGRES_PASSWORD: pass
-            POSTGRES_DB: app
-        ports:
-            - "5433:5432"
+        networks:
+            - inner
+
+networks:
+    inner:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.28.0.0/16
 
 volumes:
-    manager-postgres:
     composer:
